@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools==75.8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "af3-signal"
+version = "0.1.0"
+description = "Reproducible descriptive AF3 versus fibril sequence-order-null pilot"
+requires-python = ">=3.12"
+dependencies = [
+  "biopython==1.85", "numpy==2.2.3", "pandas==2.2.3",
+  "matplotlib==3.10.1", "PyYAML==6.0.2"
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.5"]
+
+[project.scripts]
+af3-signal = "af3_signal.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,6 @@
+extends: pilot.yaml
+run_dir: runs/smoke
+n_shuffles: 1
+prediction_seeds: [11]
+expected_samples_per_seed: 1
+enabled_proteins: [tau]

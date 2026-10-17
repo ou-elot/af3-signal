@@ -1,0 +1,58 @@
+# Freeze this configuration before inference. Changed configurations need a new run directory.
+run_dir: runs/pilot
+shuffle_seed: 20261016
+n_shuffles: 5
+prediction_seeds: [11, 22, 33]
+expected_samples_per_seed: 5  # scheduling estimate, never an observed sample count
+model:
+  name: alphafold3
+  version: unknown_pending_inference
+  checkpoint: unknown_pending_inference
+  msa: none
+  templates: disabled
+  # The publication's PDB snapshot is not an asserted training cutoff.
+  documented_pdb_snapshot: '2023-01-12'
+  training_cutoff: unknown_for_actual_checkpoint
+  documentation: https://www.nature.com/articles/s41586-024-07487-w
+analysis:
+  low_confidence_threshold: 50
+  min_residues: 10
+  min_coverage: 0.90
+  peptide_bond_max_angstrom: 1.8
+  contact_distance_angstrom: 8.0
+  contact_min_sequence_separation: 3
+  beta_phi: [-180, -90]
+  beta_psi: [90, 180]
+flanks:
+  - id: unflanked
+    left: ''
+    right: ''
+  - id: context_a
+    left: GSEPSGQSGEPPQSGSPEGS
+    right: QSGEPGSSQPEGSQPSGESP
+  - id: context_b
+    left: DQSKPEQSGKSEPQGSDKQS
+    right: EPKQSGDPSQEKSGQPSDKE
+proteins:
+  tau:
+    canonical_start: 306
+    canonical_end: 378
+    canonical_accession: P10636-8
+    canonical_fasta_url: https://rest.uniprot.org/uniprotkb/P10636-8.fasta
+    canonical_length: 441
+    segment: VQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGNKKIETHKLTF
+    references:
+      - {id: 5O3L, role: primary, doi: 10.1038/nature23002}
+      - {id: 5O3T, role: sensitivity, doi: 10.1038/nature23002}
+  abeta:
+    canonical_start: 1
+    canonical_end: 42
+    canonical_accession: P05067
+    canonical_fasta_url: https://rest.uniprot.org/uniprotkb/P05067.fasta
+    canonical_length: 770
+    # Canonical positions here mean A-beta1-42; APP positions are also retained.
+    precursor_start: 672
+    segment: DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIA
+    references:
+      - {id: 7Q4B, role: primary, doi: 10.1126/science.abm7285}
+      - {id: 7Q4M, role: sensitivity, doi: 10.1126/science.abm7285}
